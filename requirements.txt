@@ -1,0 +1,6 @@
+streamlit
+neuron
+matplotlib
+plotly
+numpy
+pandas
