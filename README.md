@@ -32,7 +32,7 @@ To get started with `NEURON-Simulator`, ensure that Python 3.8 or a later versio
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/kssrikar4/NEURON-Simulator.git
-    cd COBRApy-GUI
+    cd NEURON-Simulator
     ```
 2.  **Create a virtual environment (recommended):**
     ```bash
