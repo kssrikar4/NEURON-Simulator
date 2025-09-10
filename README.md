@@ -6,12 +6,12 @@ This application has a set of features to explore computational neuronal dynamic
 
 ### 1. Model Configuration and Simulation
 * **Neuron Model Selection:** The application provides a dropdown menu to instantiate three distinct pre-built neuron models: a passive single-compartment **soma**, a passive **dendrite** connected to a soma, and a multi-compartment neuron with active Hodgkin-Huxley channels.
-* **Parameter Control:** Users can precisely define key biophysical parameters, including membrane resistance ($R_m$) and capacitance ($C_m$), using interactive sliders and numerical input fields.
+* **Parameter Control:** Users can precisely define key biophysical parameters, including membrane resistance (R<sub>m</sub>) and capacitance (C<sub>m</sub>), using interactive sliders and numerical input fields.
 * **Advanced Stimulation Options:** The interface allows for the selection of three primary stimulation protocols via a dropdown menu:
     * **NetStim:** Simulates synaptic input to the neuron.
     * **IClamp:** Injects a fixed current waveform into the neuron.
     * **VClamp:** Clamps the membrane potential at a specific voltage level.
-* **Simulation Control:** The application provides dedicated buttons to initiate (`Start Simulation`) and reset (`Reset Simulation`) the simulation state. Simulation duration and timestep ($dt$) can be adjusted numerically.
+* **Simulation Control:** The application provides dedicated buttons to initiate (`Start Simulation`) and reset (`Reset Simulation`) the simulation state. Simulation duration and timestep (`dt`) can be adjusted numerically.
 
 ### 2. Data Visualization and Analysis
 * **Interactive 3D Morphology Visualization:** The application generates an interactive 3D plot of the neuron's morphology using Plotly, which allows for dynamic inspection of the geometry of the soma, dendrites, and axon.
