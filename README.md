@@ -1,68 +1,75 @@
 # NEURON-Simulator
-Graphical Interface for Computational Neuroscience
+
+NEURON-Simulator is a graphical interface designed for computational neuroscience. The application allows you to build, simulate, and analyze neuronal networks using the powerful NEURON simulation environment.
 
 ## Core Application Features
-This application has a set of features to explore computational neuronal dynamics. The current implementation status of each feature is detailed below.
 
-### 1. Model Configuration and Simulation
-*   **Neuron Network Configuration:** The application now provides controls to define a network of neurons, including setting the total number of neurons and their connectivity pattern ('All-to-All' or 'Random' with adjustable probability).
-*   **Neuron Model Selection:** A dropdown menu instantiates a population of identical pre-built neuron models for the entire network: a active single-compartment **soma**, a passive **dendrite** connected to a soma, and a multi-compartment neuron with active Hodgkin-Huxley channels.
-*   **Parameter Control:** Users can define key biophysical parameters (membrane resistance R<sub>m</sub> and capacitance C<sub>m</sub>) applied uniformly to all neurons in the network using interactive sliders and numerical input fields.
-*   **Advanced Stimulation Options:** The interface allows for the selection of stimulation protocols (NetStim, IClamp, VClamp) via a dropdown menu and to target a specific neuron within the network for applying the stimulus.
-*   **Simulation Control:** The application provides dedicated buttons to initiate (`Start Simulation`) and reset (`Reset Simulation`) the simulation state. Simulation duration and timestep (`dt`) can be adjusted numerically.
+The simulator is built around three main areas: Model Configuration, Simulation, and Data Visualization.
 
-### 2. Data Visualization and Analysis
-*   **Interactive 3D Network Morphology Visualization:** The application generates an interactive 3D plot of the entire network's morphology using Plotly, color-coding individual neurons for clarity and allowing for dynamic inspection.
-*   **Population Membrane Potential Plots:** After a simulation is run, a single plot displays the membrane potential over time for all neurons in the network, enabling direct comparison of activity across the population.
-*   **Network Spike Raster Plot:** The application automatically detects and plots the timing of action potentials for every neuron, providing a clear visual representation of population firing patterns and network-wide activity.
-*   **Comparison of Runs:** The results from batch simulations can be overlaid on a single graph, facilitating the comparative analysis of network responses under different parameter sets.
+  * **Model Configuration and Simulation**:
 
-### 3. Data and Configuration Management
-*   **Data Export:** Simulation results, including voltage traces for all neurons, can be exported as a CSV file using a download button.
-*   **Configuration Management:** The application supports saving the current network and simulation parameters to a JSON file and loading a previously saved configuration.
-*   **Batch Simulation:** This feature enables the execution of multiple network simulations using a predefined list of parameter presets.
+      * **Neuron Model Selection**: The application provides a dropdown menu to instantiate three distinct pre-built neuron models: a passive single-compartment **soma**, a passive **dendrite** connected to a soma, and a **multi-compartment** neuron with active Hodgkin-Huxley channels.
+      * **Parameter Control**: You can precisely define key biophysical parameters, including membrane resistance (R<sub>m</sub>) and capacitance (C<sub>m</sub>), using interactive sliders and numerical input fields.
+      * **Stimulation Options**: The interface allows for the selection of three primary stimulation protocols via a dropdown menu:
+          * **NetStim**: Simulates synaptic input to the neuron.
+          * **IClamp**: Injects a fixed current waveform into the neuron.
+          * **VClamp**: Holds the membrane potential at a specific voltage level.
+      * **Simulation Control**: The application provides dedicated buttons to initiate (**Start Simulation**) and reset (**Reset Simulation**) the simulation state. Simulation duration and timestep (`dt`) can be adjusted numerically.
 
-## Application Manual
+  * **Data Visualization and Analysis**:
 
-### Installation and Setup
-To get started with `NEURON-Simulator`, ensure that Python 3.8 or a later version is installed and follow these steps:
+      * **Interactive 3D Morphology Visualization**: The application generates an interactive 3D plot of the neuron's morphology using Plotly, allowing for dynamic inspection of the geometry of the soma, dendrites, and axon.
+      * **Membrane Potential Plots**: After a simulation is run, a plot displays the membrane potential over time.
+      * **Spike Raster Plot**: The application automatically detects and plots the timing of action potentials using an improved spike detection algorithm with a refractory period.
+      * **Interactive "About" Section**: A new expandable dropdown menu at the top of the page provides a short manual explaining the different components of the simulator.
 
-1.  **Clone the repository:**
+## Installation and Setup
+
+To run the simulator, you need Python 3.8 or later and a compatible NEURON installation.
+
+1.  **Clone the Repository**:
     ```bash
     git clone https://github.com/kssrikar4/NEURON-Simulator.git
     cd NEURON-Simulator
     ```
-2.  **Create a virtual environment (recommended):**
+2.  **Create a Virtual Environment**: It is highly recommended to use a virtual environment to manage dependencies.
     ```bash
     python -m venv py
     source py/bin/activate  # On Windows: `py\Scripts\activate`
     ```
-3.  **Install dependencies:**
+3.  **Install Dependencies**: Use the provided `requirements.txt` file to install all necessary Python libraries.
     ```bash
     pip install -r requirements.txt
     ```
 
-### Running the Application
-Launch the application from the terminal using the following command:
+## Running the Application
+
+Launch the application from your terminal. This will automatically open a new tab in your web browser.
 
 ```bash
 streamlit run app.py
 ```
 
-This will open the application in your web browser.
+## Step-by-Step User Guide
 
-### User Guide
-#### 1. Model and Parameters
-*   **Configure Network:** Set the `Number of Neurons` and select a `Connectivity Pattern` to define the network architecture.
-*   **Select Neuron Model:** Choose a model from the dropdown menu to define the neuronal geometry for all neurons in the network.
-*   **Model Parameters:** Use the sliders to adjust the passive membrane properties, which will be applied globally to all neurons.
-*   **Select Stimulus Type and Target:** Select the desired input method and specify the `Target Neuron Index` which will receive the stimulus.
+1.  **Define Your Network**: On the left panel, use the **Number of Neurons** input to set the size of your network. Choose a **Connectivity Pattern** (All-to-All or Random) and, for Random, set the **Connection Probability**.
+2.  **Configure Neuron Model**: Select a **Neuron Model Type** from the dropdown and use the sliders to set the **Membrane Resistance** and **Membrane Capacitance**.
+3.  **Set Up Stimulation**: Choose a **Stimulus Type** and adjust its parameters in the dynamically generated section below. You must also select a **Target Neuron Index** to receive the stimulus.
+4.  **Run the Simulation**: Set the **Simulation Duration** and **Timestep (dt)**. Click the **Start Simulation** button to run the simulation.
+5.  **View Results**: Once the simulation is complete, the right panel will populate with the results. You can view the 3D morphology plot and the membrane potential traces. For the **Spike Raster Plot**, adjust the **Spike Detection Threshold** to visualize the neuron firing times.
 
-#### 2. Simulation Control
-*   **Set Duration and Timestep:** Define the simulation length and temporal resolution in the designated input fields.
-*   **Start Simulation:** Click this button to run the network simulation. The application will display the population results upon completion.
-*   **Reset Simulation:** This button clears all simulation data and resets the network state, preparing the application for a new run.
+## Acknowledgements
 
-#### 3. Data Management
-*   **Export Data:** Use the "Export Data to CSV" button to download a file containing the time series data for all neurons in the simulation.
-*   **Save/Load Configuration:** Save the current network configuration to a JSON file or load an existing one using the file uploader.
+Thank you to the following open-source libraries for making this project possible:
+
+  * **NEURON**: The core simulation engine for modeling neuronal networks.
+  * **Streamlit**: The framework for building the interactive web application.
+  * **Plotly** and **Matplotlib**: Used for all data visualization and plotting.
+  * **NumPy** and **Pandas**: Used for data handling and numerical operations.
+  * **Git**: For version control.
+
+The code for this application was developed with the assistance of Gemini for code suggestions and refinement.
+
+## Licensing
+
+This project is released under the **BSD 3-Clause License**.

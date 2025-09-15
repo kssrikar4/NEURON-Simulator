@@ -15,9 +15,9 @@ def create_neuron_model(model_name, rm, cm):
         soma.g_pas = 1 / rm
         soma.e_pas = -65
         soma.cm = cm
-        soma.insert('hh') 
+        soma.insert('hh')
         h.define_shape()
-        return soma
+        return {'soma': soma, 'dendrites': [], 'axon': None}
     elif model_name == 'Dendrite (Passive)':
         soma = h.Section(name='soma')
         dend = h.Section(name='dend')
@@ -31,7 +31,7 @@ def create_neuron_model(model_name, rm, cm):
             sec.e_pas = -65
             sec.cm = cm
         h.define_shape()
-        return soma
+        return {'soma': soma, 'dendrites': [dend], 'axon': None}
     elif model_name == 'Multi-Compartment':
         soma = h.Section(name='soma')
         dend1 = h.Section(name='dend1')
@@ -53,38 +53,33 @@ def create_neuron_model(model_name, rm, cm):
         soma.insert('hh')
         axon.insert('hh')
         h.define_shape()
-        return soma
+        return {'soma': soma, 'dendrites': [dend1, dend2, dend3], 'axon': axon}
     return None
-def create_synapse(neuron_model, syn_type):
+def create_synapse(neuron_section, syn_type):
     if syn_type == 'ExpSyn':
-        syn = h.ExpSyn(neuron_model(0.5))
+        syn = h.ExpSyn(neuron_section(0.5))
         syn.tau = 2
         syn.e = 0
     elif syn_type == 'Exp2Syn':
-        syn = h.Exp2Syn(neuron_model(0.5))
+        syn = h.Exp2Syn(neuron_section(0.5))
         syn.tau1 = 0.5
         syn.tau2 = 2
-        syn.e = 0
-    elif syn_type == 'AlphaSynapse':
-        syn = h.AlphaSynapse(neuron_model(0.5))
-        syn.tau = 1
         syn.e = 0
     return syn
 def create_netstim(h_obj):
     netstim = h_obj.NetStim()
     netstim.number = 1
-    netstim.start = 100
-    netstim.interval = 10
-    netstim.noise = 0
+    netstim.start = 250
+    netstim.interval = 100
     return netstim
-def create_iclamp(neuron_model, delay, dur, amp):
-    iclamp = h.IClamp(neuron_model(0.5))
+def create_iclamp(section, delay, dur, amp):
+    iclamp = h.IClamp(section(0.5))
     iclamp.delay = delay
     iclamp.dur = dur
     iclamp.amp = amp
     return iclamp
-def create_vclamp(neuron_model, dur, level):
-    vclamp = h.VClamp(neuron_model(0.5))
+def create_vclamp(section, dur, level):
+    vclamp = h.VClamp(section(0.5))
     vclamp.dur[0] = dur
     vclamp.amp[0] = level
     return vclamp

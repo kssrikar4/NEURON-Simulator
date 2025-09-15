@@ -1,6 +1,6 @@
-streamlit
-neuron
-matplotlib
-plotly
-numpy
-pandas
+streamlit==1.49.1
+neuron==8.2.7
+matplotlib==3.10.6
+plotly==6.3.0
+numpy==2.3.3
+pandas==2.3.2
