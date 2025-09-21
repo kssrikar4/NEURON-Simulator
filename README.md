@@ -25,7 +25,7 @@ The simulator is built around three main areas: Model Configuration, Simulation,
 
 ## Installation and Setup
 
-To run the simulator, you need Python 3.8 or later and a compatible NEURON installation.
+To run the simulator, you need Python 3.10 or later. **Note**: The simulator currently only works on Linux and macOS; Windows is not supported.
 
 1.  **Clone the Repository**:
     ```bash
@@ -35,7 +35,7 @@ To run the simulator, you need Python 3.8 or later and a compatible NEURON insta
 2.  **Create a Virtual Environment**: It is highly recommended to use a virtual environment to manage dependencies.
     ```bash
     python -m venv py
-    source py/bin/activate  # On Windows: `py\Scripts\activate`
+    source py/bin/activate
     ```
 3.  **Install Dependencies**: Use the provided `requirements.txt` file to install all necessary Python libraries.
     ```bash
